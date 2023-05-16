@@ -13,10 +13,14 @@ const { connect } = require("./database/db");
 // Import routes
 const userRoutes = require("./routes/userRoutes");
 const filterRoutes = require("./routes/filterRoutes");
+const platformRoutes = require("./routes/platformRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 
 // Routes
 app.use(userRoutes);
 app.use(filterRoutes);
+app.use(platformRoutes);
+app.use(categoryRoutes);
 
 // Start server
 async function start() {

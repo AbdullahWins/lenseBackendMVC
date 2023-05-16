@@ -15,9 +15,13 @@ const connect = async () => {
 const db = client.db(process.env.DATABASE_NAME);
 const usersCollection = db.collection("users");
 const filtersCollection = db.collection("filters");
+const platformsCollection = db.collection("platforms");
+const categoriesCollection = db.collection("categories");
 
 module.exports = {
   connect,
   usersCollection,
   filtersCollection,
+  platformsCollection,
+  categoriesCollection,
 };
