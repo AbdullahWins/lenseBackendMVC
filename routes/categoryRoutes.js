@@ -5,10 +5,12 @@ const {
   getAllCategories,
   getOneCategory,
   addOneCategory,
+  getCategoriesByPlatform,
 } = require("../controllers/categoryController");
 
 router.get("/categories/all", getAllCategories);
-router.get("/categories/:id", getOneCategory);
+router.get("/categories/find/:id", getOneCategory);
+router.get("/categories/:platformName", getCategoriesByPlatform);
 router.get("/categories/add", addOneCategory);
 
 module.exports = router;

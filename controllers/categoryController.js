@@ -3,7 +3,7 @@
 const { ObjectId } = require("mongodb");
 const { categoriesCollection } = require("../database/db");
 
-//get all categories
+//get all categories from all platform
 const getAllCategories = async (req, res) => {
   try {
     const query = {};
@@ -17,6 +17,29 @@ const getAllCategories = async (req, res) => {
   }
 };
 
+//get all categories form single platform
+const getCategoriesByPlatform = async (req, res) => {
+  try {
+    const platform = req.params.platformName;
+    const categories = await categoriesCollection
+      .find({
+        platformName: platform,
+      })
+      .toArray(); // Convert the cursor to an array
+
+    if (categories.length === 0) {
+      // Check if the array is empty
+      res.status(404).send("Categories not found");
+    } else {
+      res.send(categories);
+      console.log(categories);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+
 //get single category
 const getOneCategory = async (req, res) => {
   try {
@@ -24,11 +47,11 @@ const getOneCategory = async (req, res) => {
     const category = await categoriesCollection.findOne({
       _id: new ObjectId(categoryId),
     });
-    if (!platform) {
+    if (!category) {
       res.status(404).send("Category not found");
     } else {
-      res.send(platform);
-      console.log(platform);
+      res.send(category);
+      console.log(category);
     }
   } catch (err) {
     console.error(err);
@@ -54,4 +77,5 @@ module.exports = {
   getAllCategories,
   getOneCategory,
   addOneCategory,
+  getCategoriesByPlatform,
 };
