@@ -5,14 +5,14 @@ const {
   getOneFilter,
   getAllFilters,
   getFiltersByCategory,
-  getFiltersByType,
+  getFiltersByPlatform,
   addOneFilter,
 } = require("../controllers/filterController");
 
 router.get("/filters/find/:id", getOneFilter);
 router.get("/filters/all", getAllFilters);
 router.get("/filters/categories/:categoryName", getFiltersByCategory);
-router.get("/filters/types/:typeName", getFiltersByType);
+router.get("/filters/platforms/:platformName", getFiltersByPlatform);
 router.post("/filters/add", addOneFilter);
 
 module.exports = router;

@@ -18,14 +18,14 @@ const getAllFilters = async (req, res) => {
 };
 
 // Get filters by types
-const getFiltersByType = async (req, res) => {
+const getFiltersByPlatform = async (req, res) => {
   try {
-    const filterTypeName = req.params.typeName;
+    const filterPlatformName = req.params.platformName;
     const filters = await filtersCollection
-      .find({ filterType: filterTypeName })
+      .find({ filterPlatform: filterPlatformName })
       .toArray();
     if (filters.length === 0) {
-      res.status(404).send("No filters found for the specified type");
+      res.status(404).send("No filters found for the specified platform");
     } else {
       res.send(filters);
     }
@@ -89,7 +89,7 @@ const addOneFilter = async (req, res) => {
 module.exports = {
   getOneFilter,
   getFiltersByCategory,
-  getFiltersByType,
+  getFiltersByPlatform,
   getAllFilters,
   addOneFilter,
 };
