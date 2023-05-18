@@ -2,17 +2,25 @@ const express = require("express");
 const router = express.Router();
 
 const {
+  addOneFilter,
   getOneFilter,
   getAllFilters,
-  getFiltersByCategory,
   getFiltersByPlatform,
-  addOneFilter,
+  getFiltersByPlatformAndCategory,
+  getFiltersByPlatformAndCategoryAndCollection,
 } = require("../controllers/filterController");
 
 router.get("/filters/find/:id", getOneFilter);
 router.get("/filters/all", getAllFilters);
-router.get("/filters/categories/:categoryName", getFiltersByCategory);
-router.get("/filters/platforms/:platformName", getFiltersByPlatform);
 router.post("/filters/add", addOneFilter);
+router.get("/filters/:platformName", getFiltersByPlatform);
+router.get(
+  "/filters/:platformName/:categoryName",
+  getFiltersByPlatformAndCategory
+);
+router.get(
+  "/filters/:platformName/:categoryName/:collectionName",
+  getFiltersByPlatformAndCategoryAndCollection
+);
 
 module.exports = router;

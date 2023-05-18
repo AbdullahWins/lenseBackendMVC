@@ -36,14 +36,41 @@ const getFiltersByPlatform = async (req, res) => {
 };
 
 // Get filters by category
-const getFiltersByCategory = async (req, res) => {
+const getFiltersByPlatformAndCategory = async (req, res) => {
   try {
+    const filterPlatformName = req.params.platformName;
     const filterCategoryName = req.params.categoryName;
     const filters = await filtersCollection
-      .find({ filterCategory: filterCategoryName })
+      .find({
+        filterCategory: filterCategoryName,
+        filterPlatform: filterPlatformName,
+      })
       .toArray();
     if (filters.length === 0) {
       res.status(404).send("No filters found for the specified category");
+    } else {
+      res.send(filters);
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+// Get filters by category
+const getFiltersByPlatformAndCategoryAndCollection = async (req, res) => {
+  try {
+    const filterPlatformName = req.params.platformName;
+    const filterCategoryName = req.params.categoryName;
+    const filterCollectionName = req.params.collectionName;
+    const filters = await filtersCollection
+      .find({
+        filterCategory: filterCategoryName,
+        filterPlatform: filterPlatformName,
+        filterCollection: filterCollectionName,
+      })
+      .toArray();
+    if (filters.length === 0) {
+      res.status(404).send("No filters found for the specified collection");
     } else {
       res.send(filters);
     }
@@ -88,8 +115,9 @@ const addOneFilter = async (req, res) => {
 
 module.exports = {
   getOneFilter,
-  getFiltersByCategory,
-  getFiltersByPlatform,
   getAllFilters,
   addOneFilter,
+  getFiltersByPlatform,
+  getFiltersByPlatformAndCategory,
+  getFiltersByPlatformAndCategoryAndCollection,
 };
