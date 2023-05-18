@@ -15,12 +15,14 @@ const userRoutes = require("./routes/userRoutes");
 const filterRoutes = require("./routes/filterRoutes");
 const platformRoutes = require("./routes/platformRoutes");
 const categoryRoutes = require("./routes/categoryRoutes");
+const collectionRoutes = require("./routes/collectionRoutes");
 
 // Routes
 app.use(userRoutes);
 app.use(filterRoutes);
 app.use(platformRoutes);
 app.use(categoryRoutes);
+app.use(collectionRoutes);
 
 // Start server
 async function start() {

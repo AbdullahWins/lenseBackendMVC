@@ -2,16 +2,20 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getAllCategories,
-  getOneCategory,
-  addOneCategory,
-  getCategoriesByPlatform,
-} = require("../controllers/categoryController");
+  getAllCollectionNames,
+  getOneCollectionName,
+  addOneCollectionName,
+  getCollectionNamesByPlatform,
+  getCollectionNamesByPlatformAndCategory,
+} = require("../controllers/collectionController");
 
-router.get("/categories/all", getAllCategories);
-router.get("/categories/find/:id", getOneCategory);
-router.get("/categories/platforms/:platformName", getCategoriesByPlatform);
-router.get("/categories/collections/:platformName", getCategoriesByPlatform);
-router.get("/categories/add", addOneCategory);
+router.get("/collections/all", getAllCollectionNames);
+router.get("/collections/find/:id", getOneCollectionName);
+router.get("/collections/add", addOneCollectionName);
+router.get("/collections/:platformName", getCollectionNamesByPlatform);
+router.get(
+  "/collections/:platformName/:categoryName",
+  getCollectionNamesByPlatformAndCategory
+);
 
 module.exports = router;

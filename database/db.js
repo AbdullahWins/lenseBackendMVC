@@ -17,6 +17,7 @@ const usersCollection = db.collection("users");
 const filtersCollection = db.collection("filters");
 const platformsCollection = db.collection("platforms");
 const categoriesCollection = db.collection("categories");
+const collectionsCollection = db.collection("collections");
 
 module.exports = {
   connect,
@@ -24,4 +25,5 @@ module.exports = {
   filtersCollection,
   platformsCollection,
   categoriesCollection,
+  collectionsCollection,
 };
